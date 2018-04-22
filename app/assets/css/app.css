@@ -1,0 +1,471 @@
+/*
+ * Globals
+ */
+html {
+    height: 100%;
+    margin: 0;
+    font-size: 14px;
+    overflow-x: hidden;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-image: url("../img/babynames2.jpg");
+    background-position: center;
+    /*background-size: contain;*/
+    background-repeat: repeat;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+:root {
+    --jumbotron-padding-y: 3rem;
+}
+
+.jumbotron {
+    padding-top: var(--jumbotron-padding-y);
+    padding-bottom: var(--jumbotron-padding-y);
+    margin-bottom: 0;
+    background-color: rgba(153, 255, 204, 0.95);
+}
+
+.jumbotron p:last-child {
+    margin-bottom: 0;
+}
+
+.jumbotron-heading {
+    font-weight: 300;
+}
+
+.jumbotron .container {
+    max-width: 40rem;
+}
+
+.no-select {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.not-allowed {
+    cursor: not-allowed;
+}
+
+/*
+ * Top navbar
+ */
+#top-navbar {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+#top-navbar .navbar-back-btn {
+    width: 10%;
+}
+
+/*
+ * Main
+ */
+#card-container {
+    max-width: 540px;
+}
+
+#card-container .card {
+    min-width: 220px;
+    text-decoration: none;
+    transition: transform .2s;
+}
+
+#card-container .card:hover {
+    cursor: pointer;
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2);
+}
+
+/*
+ * Boy card
+ */
+#boy-card {
+    border-color: #8de2f4;
+    background-color: rgba(240, 248, 255, 0.9);
+    box-shadow: 0 .25rem 0.75rem #007bff;
+}
+
+#boy-card .card-header {
+    background-color: #8de2f4;
+}
+
+#boy-card .card-footer .btn {
+    background: #8de2f4;
+    border-color: #8de2f4;
+}
+
+/*
+ * Girl card
+ */
+#girl-card {
+    border-color: #de3cbb;
+    background-color: rgba(249, 210, 240, 0.9);
+    box-shadow: 0 .25rem .75rem #de3cbb;
+}
+
+#girl-card .card-header {
+    background-color: #de3cbb;
+}
+
+#girl-card .card-footer .btn {
+    background: #de3cbb;
+    border-color: #de3cbb;
+}
+
+/*
+ * Categories Title
+ */
+.jumbotron.boys-title {
+    background-color: rgba(141, 226, 244, 0.5);
+}
+
+.jumbotron.girls-title {
+    background-color: rgba(255, 81, 124, 0.5);
+}
+
+/*
+ * Categories
+ */
+#categories .container {
+    max-width: 992px;
+}
+
+/*
+ * Category card
+ */
+#categories .cat-card {
+    -ms-transform: scale(0); /* IE 9 */
+    -webkit-transform: scale(0); /* Safari 3-8 */
+    transform: scale(0);
+    transition: transform 0.2s ease;
+}
+
+#categories .cat-card.show {
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari 3-8 */
+    transform: scale(1);
+}
+
+#categories .cat-card.show:hover {
+    cursor: pointer;
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2);
+}
+
+#categories .cat-card .card-footer {
+    background-color: unset;
+}
+
+#categories .cat-card .card-footer .cat-desc {
+    font-size: medium;
+}
+
+/*
+ * Category boys card
+ */
+#categories .cat-card .boys-card {
+    background-color: rgba(240, 248, 255, 0.9);
+    border: 2px solid #8de2f4;
+    box-shadow: 0 .25rem 0.75rem deepskyblue;
+}
+
+#categories .cat-card .boys-card .card-footer .cat-desc {
+    background: #8de2f4;
+}
+
+/*
+ * Category girls card
+ */
+#categories .cat-card .girls-card {
+    background-color: rgba(249, 210, 240, 0.9);
+    border: 2px solid #de3cbb;
+    box-shadow: 0 .25rem .75rem #de3cbb;
+}
+
+#categories .cat-card .girls-card .card-footer .cat-desc {
+    background: #de3cbb;
+}
+
+/*
+ * Category Image
+ */
+#categories .cat-card .cat-img {
+    transition: filter 0.3s ease;
+}
+
+/* image dark on hover */
+#categories .cat-card:hover .cat-img {
+    -webkit-filter: brightness(50%); /* Safari 6.0 - 9.0 */
+    filter: brightness(50%);
+}
+
+/* image always dark */
+#categories .cat-card .cat-img.img-dark {
+    -webkit-filter: brightness(50%); /* Safari 6.0 - 9.0 */
+    filter: brightness(50%);
+}
+
+/* category image overlay */
+#categories .cat-card .cat-img-overlay {
+    top: 50%;
+    left: 50%;
+    max-width: 50%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+/* show image overlay on hover */
+#categories .cat-card:hover .cat-img-overlay {
+    opacity: 1;
+}
+
+/* show image overlay */
+#categories .cat-card .cat-img-overlay.show-icon {
+    opacity: 1;
+}
+
+/*
+ * Category submit buttons
+ */
+#categories-submit .btn {
+    -ms-transform: scale(0); /* IE 9 */
+    -webkit-transform: scale(0); /* Safari 3-8 */
+    transform: scale(0);
+    transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#categories-submit .btn-boys {
+    background-color: #8de2f4;
+    border-color: #8de2f4;
+    box-shadow: 0 .25rem 0.75rem #007bff;
+}
+
+#categories-submit .btn-boys.show,
+#categories-submit .btn-girls.show {
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari 3-8 */
+    transform: scale(1);
+}
+
+#categories-submit .btn-boys:hover {
+    background-color: #129eba;
+    border-color: #129eba;
+}
+
+#categories-submit .btn-girls {
+    background-color: #de3cbb;
+    border-color: #de3cbb;
+    box-shadow: 0 .25rem .75rem #de3cbb;
+}
+
+#categories-submit .btn-girls:hover {
+    background-color: #ae1e8f;
+    border-color: #ae1e8f;
+}
+
+/*
+ * Category Alert
+ */
+#categories-alert {
+    max-width: 992px;
+}
+
+#categories-alert .alert {
+    -ms-transform: scale(0); /* IE 9 */
+    -webkit-transform: scale(0); /* Safari 3-8 */
+    transform: scale(0);
+    transition: transform 0.2s ease;
+}
+
+#categories-alert .alert.show-alert {
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari 3-8 */
+    transform: scale(1);
+}
+
+/*
+ * Name list
+ */
+#nameList {
+    max-width: 500px;
+    height: 100px;
+    overflow: hidden;
+    -ms-transform: scale(0); /* IE 9 */
+    -webkit-transform: scale(0); /* Safari 3-8 */
+    transform: scale(0);
+    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 0.15s, height 1.2s cubic-bezier(0.19, 1, 0.22, 1) 0.65s;
+}
+
+#nameList .list-group-item {
+    -webkit-filter: initial;
+    filter: initial;
+    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1), filter 1s cubic-bezier(0.19, 1, 0.22, 1);
+    padding: .25rem 1rem;
+}
+
+#nameList .list-group-item.loading {
+    -webkit-filter: blur(2px) brightness(115%);
+    filter: blur(2px) brightness(115%);
+}
+
+#nameList .list-group-item:hover {
+    -ms-transform: scale(1.075); /* IE 9 */
+    -webkit-transform: scale(1.075); /* Safari 3-8 */
+    transform: scale(1.075);
+}
+
+#nameList.show {
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari 3-8 */
+    transform: scale(1);
+    height: 641px;
+}
+
+#nameList .name-list-img-container {
+    width: 10%;
+    min-width: 44px;
+}
+
+#nameList .boys-list-item {
+    background-color: rgba(141, 226, 244, 0.95);
+}
+
+#nameList .boys-list-item:hover {
+    background-color: rgba(69, 209, 237, 0.95);
+}
+
+#nameList .girls-list-item {
+    background-color: rgba(249, 210, 240, 0.95);
+}
+
+#nameList .girls-list-item:hover {
+    background-color: rgba(240, 143, 217, 0.95);
+}
+
+#nameList .list-item-even {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/*
+ * Name list Alert
+ */
+#nameList-alert {
+    max-width: 400px;
+    -ms-transform: scale(0); /* IE 9 */
+    -webkit-transform: scale(0); /* Safari 3-8 */
+    transform: scale(0);
+    transition: transform 0.2s ease;
+}
+
+#nameList-alert.show-alert {
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari 3-8 */
+    transform: scale(1);
+}
+
+/*
+ * Name Refresh Alert
+ */
+#refresh-alert {
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*transition: all 0.3s ease;*/
+}
+
+#refresh-alert .card-wrapper {
+    top: 50%;
+    left: 50%;
+    -ms-transform: scale(0); /* IE 9 */
+    -webkit-transform: scale(0); /* Safari 3-8 */
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease;
+}
+
+#refresh-alert .card-wrapper.show-alert {
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari 3-8 */
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/*
+ * CSS Spinner
+ */
+.spinner {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+}
+
+.cube1, .cube2 {
+    background-color: rgba(153, 255, 204, 0.95);
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
+    animation: sk-cubemove 1.8s infinite ease-in-out;
+}
+
+.cube2 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+@-webkit-keyframes sk-cubemove {
+    25% {
+        -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5)
+    }
+    50% {
+        -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg)
+    }
+    75% {
+        -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5)
+    }
+    100% {
+        -webkit-transform: rotate(-360deg)
+    }
+}
+
+@keyframes sk-cubemove {
+    25% {
+        transform: translateX(42px) rotate(-90deg) scale(0.5);
+        -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+    }
+    50% {
+        transform: translateX(42px) translateY(42px) rotate(-179deg);
+        -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+    }
+    50.1% {
+        transform: translateX(42px) translateY(42px) rotate(-180deg);
+        -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+    }
+    75% {
+        transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+        -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+    }
+    100% {
+        transform: rotate(-360deg);
+        -webkit-transform: rotate(-360deg);
+    }
+}

@@ -1,0 +1,68 @@
+<!-- Alert -->
+<div id="nameList-alert" class="container my-5 show d-none" ng-show="showAlert">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="card alert-danger">
+                <div class="card-header">
+                    <div class="icon d-inline-block"><i class="fas fa-exclamation-circle"></i></div>
+                    <h5 class="d-inline">Oops!</h5>
+                </div>
+                <div class="card-body text-center">
+                    <h5>Something went wrong</h5>
+                    <p class="mb-2">Go back and try again</p>
+                </div>
+                <div class="card-footer border-top-0">
+                    <a type="button" class="btn btn-lg btn-block btn-danger"
+                       href="#!/{{ nameListCtrl.gender }}/categories">Go back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Name list -->
+<div id="nameList" class="container my-4" ng-class="listClass" ng-show="!showAlert">
+    <div class="btn btn-sm btn-dark text-white mb-2 font-italic" ng-click="refreshNameList()" ng-class="refreshBtnClass">
+        <div class="icon d-inline-block pr-1"><i class="fas fa-sync"></i></div>
+        Refresh List
+    </div>
+    <div class="list-wrapper position-relative">
+        <div class="list-group">
+            <div class="list-group-item list-group-item-action flex-column align-items-start"
+                 ng-repeat="name in nameList | orderBy: 'name_value'" ng-class-odd="listItemOddClass"
+                 ng-class-even="listItemEvenClass" ng-class="refreshClass">
+                <div class="d-flex flex-row w-100 justify-content-between">
+                    <div class="d-flex flex-column">
+                        <h5 class="mb-1 text-capitalize">{{ name.name_value }}</h5>
+                        <small class="mb-1 text-capitalize no-select">{{ name.cat_name }}</small>
+                    </div>
+                    <div class="d-flex flex-column name-list-img-container no-select align-self-center">
+                        <img class="img-fluid" ng-src="{{ name.img_path }}" alt="category image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="refresh-alert" class="position-absolute w-100 h-100" ng-show="showRefreshAlert">
+            <div class="card-wrapper col-12 col-sm-10 col-md-9 position-absolute">
+                <div class="card alert-warning">
+                    <div class="card-header">
+                        <div class="icon d-inline-block"><i class="fas fa-exclamation-triangle"></i></div>
+                        <h5 class="d-inline">Failed to refresh</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5>Names were not updated</h5>
+                    </div>
+                    <div class="card-footer border-top-0">
+                        <p type="button" class="btn btn-lg btn-block btn-warning" ng-click="hideRefreshAlert()">Ok</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- loader -->
+<div class="spinner mx-auto" ng-show="loadingData">
+    <div class="cube1"></div>
+    <div class="cube2"></div>
+</div>
