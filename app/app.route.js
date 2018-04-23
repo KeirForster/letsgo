@@ -11,21 +11,16 @@ function config($locationProvider, $routeProvider)
     $routeProvider
         .when('/',
         {
-            template:'<app-nav></app-nav>' +
-                    '<home-title></home-title>' +
-                    '<gender-cards></gender-cards>'
+            template:'<homepage-form></homepage-form>'
         })
-        .when('/:gender/categories',
+        .when('/eventcategories',
         {
-            template: '<app-nav></app-nav>' +
-                    '<category-title></category-title>' +
-                    '<name-categories></name-categories>'
+            template: '<event-title></event-title>' +
+                    '<event-categories></event-categories>'
         })
-        .when('/:gender/categories/submit',
+        .when('/eventcategories/view',
         {
-            template: '<app-nav></app-nav>' +
-                    '<name-list-title></name-list-title>' +
-                    '<name-list></name-list>'
+            template: '<event-list></event-list>'
         })
         .otherwise('/');
 }

@@ -1,2 +1,5 @@
-angular
-    .module('app.nav', []);
+(function()
+{
+    angular
+        .module('app.nav', []);
+})();

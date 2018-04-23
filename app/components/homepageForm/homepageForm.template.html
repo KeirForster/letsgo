@@ -1,0 +1,28 @@
+<form id="homepage-form" method="post" class="container position-absolute p-5 rounded">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group location-form-group">
+                <!-- Location Auto-complete -->
+                <label for="homepage-location" class="text-dark h2 font-weight-bold">Event Location</label>
+                <input id="homepage-location" class="form-control form-control-lg p-3"
+                       placeholder="Enter an address"
+                       ng-focus="geoLocate()" type="text" autofocus>
+            </div>
+            <div class="form-group date-form-group">
+                <!-- Date Picker -->
+                <label for="homepage-datePicker" class="text-dark h2 font-weight-bold">Event Date</label>
+                <div class="input-group">
+                    <input id="homepage-datePicker" class="form-control form-control-lg pt-3 pb-3"
+                           ng-keydown="keydown($event)">
+                </div>
+            </div>
+            <div class="form-group submit-form-group mt-5">
+                <!-- Submit -->
+                <a id="homepage-form-submit" role="button"
+                   class="btn btn-lg btn-block btn-primary text-white text-uppercase"
+                   ng-click="validateForm($event)" ng-href="#!/eventcategories">Submit</a>
+            </div>
+        </div>
+    </div>
+</form>
+

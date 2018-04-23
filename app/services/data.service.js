@@ -6,87 +6,72 @@ dataService.$inject = ['$http', '$q', '$log'];
 
 function dataService($http, $q, $log)
 {
-    let selectedGender = null;
-    let selectedCategories = null;
+    let eventLocation = null;
+    let eventDate = null;
+    let eventCategory = null;
 
     return {
-        getNames: getNames,
-        getNameCategories: getNameCategories,
-        setSelectedGender: setSelectedGender,
-        getSelectedGender: getSelectedGender,
-        setSelectedCategories: setSelectedCategories,
-        getSelectedCategories: getSelectedCategories
+        getEvents          : getEvents,
+        setEventLoc   : setEventLoc,
+        getEventLoc   : getEventLoc,
+        setEventDate       : setEventDate,
+        getEventDate       : getEventDate,
+        setEventCategory   : setEventCategory,
+        getEventCategory: getEventCategory
     };
 
-    function setSelectedGender(gender)
+    function setEventLoc(loc)
     {
-        selectedGender = gender;
+        eventLocation = loc;
     }
 
-    function getSelectedGender()
+    function getEventLoc()
     {
-        return selectedGender ? $q.defer().resolve(selectedGender) : $q.reject('gender not set');
+        return eventLocation ? $q.resolve(eventLocation) : $q.reject('event location not found');
     }
 
-    function setSelectedCategories(selCategories)
+    function setEventDate(date)
     {
-        selectedCategories = selCategories;
+        eventDate = date;
     }
 
-    function getSelectedCategories()
+    function getEventDate()
     {
-        return selectedCategories ? $q.resolve(selectedCategories) : $q.reject('categories not set');
+        return eventDate ? $q.resolve(eventDate) : $q.reject('event date not found');
     }
 
-    function getNames()
+    function setEventCategory(cat)
     {
-        return $http.get('app/db/dataService.php', {
-            params: {
-                request: 'getNames',
-                catNames: selectedCategories ? selectedCategories.toString() : null,
-                gender: selectedGender
-            }
-        })
-        .then(getNamesComplete)
-        .catch(getNamesFailed);
+        eventCategory = cat;
+    }
 
-        function getNamesComplete(response)
+    function getEventCategory()
+    {
+        return eventCategory ? $q.resolve(eventCategory) : $q.reject('event category not found');
+    }
+
+    function getEvents()
+    {
+        var oArgs = {
+            app_key    : "bqM8kJmJmnF2QPJm",
+            category   : eventCategory || '',
+            location   : eventLocation.locality || 'Vancouver',
+            sort_order : 'relevance',
+            when: eventDate.formatted || 'future',
+            page_size  : 50, // default 50
+            page_number: 1,
+            sort_order : "popularity",
+        };
+
+        return new Promise(function(resolve, reject)
         {
-            return response.data;
-        }
-
-        function getNamesFailed(error) {
-            var newMessage = 'XHR Failed for getNames';
-            if (error.data && error.data.description)
+            EVDB.API.call("/events/search", oArgs, function(oData)
             {
-                newMessage = newMessage + '\n' + error.data.description;
-                error.data.description = newMessage;
-            }
-            // $log.error(newMessage);
-            return $q.reject(error);
-        }
-    }
-
-    function getNameCategories()
-    {
-        return $http.get('app/db/dataService.php', { params: { request: 'getNameCategories' } })
-            .then(getNameCatsComplete)
-            .catch(getNameCatsFailed);
-
-        function getNameCatsComplete(response)
-        {
-            return response.data;
-        }
-
-        function getNameCatsFailed(error) {
-            var newMessage = 'XHR Failed for getNameCategories';
-            if (error.data && error.data.description)
-            {
-                newMessage = newMessage + '\n' + error.data.description;
-                error.data.description = newMessage;
-            }
-            // $log.error(newMessage);
-            return $q.reject(error);
-        }
+                // Note: this relies on the custom toString() methods below
+                $log.log(oData);
+                resolve(oData);
+            });
+        });
     }
 }
+

@@ -1,0 +1,26 @@
+<!-- Name list -->
+<div id="event-list" class="container my-4">
+    <div class="list-wrapper position-relative">
+        <div class="list-group">
+            <div class="list-group-item list-group-item-action flex-column align-items-start"
+                 ng-repeat="event in eventList">
+                <div class="d-flex flex-row w-100 justify-content-between">
+                    <div class="d-flex flex-column">
+                        <h5 class="mb-1 text-capitalize">{{ event.title }}</h5>
+                        <small class="mb-1 text-capitalize no-select">{{ event.venue_address }}</small>
+                        <small class="mb-1 text-capitalize no-select">{{ event.start_time }}</small>
+                    </div>
+                    <div class="d-flex flex-column name-list-img-container no-select align-self-center">
+                        <img class="img-fluid" ng-src="{{ event.imgPath }}" alt="category image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p class="text-white">hello?</p>
+<!-- loader -->
+<div class="spinner mx-auto" ng-show="loadingData">
+    <div class="cube1"></div>
+    <div class="cube2"></div>
+</div>

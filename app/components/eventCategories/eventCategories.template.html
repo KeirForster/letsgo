@@ -1,0 +1,35 @@
+<!-- Categories -->
+<div id="categories" class="pt-4">
+    <div class="container">
+        <div class="row">
+            <div id="cat-{{ cat.id }}" class="cat-card col-4 col-sm-3 col-md-2 no-select pb-4"
+                 ng-class="catCardClass" ng-repeat="cat in categories" ng-mouseenter="mouseenter(cat)"
+                 ng-mouseleave="mouseleave(cat)" ng-click="toggleCat(cat)">
+                <div class="card-wrapper p-2 rounded">
+                    <div class="card-body px-2">
+                        <div class="img-container position-relative">
+                            <img class="cat-img img-fluid" ng-src="{{ cat.imgPath }}" alt="img">
+                            <img class="cat-img-overlay position-absolute" src="app/assets/img/plus.png" alt="img">
+                        </div>
+                    </div>
+                    <div class="card-footer px-0 pb-0 border-top-0">
+                        <p class="cat-desc btn btn-lg btn-block text-uppercase font-italic text-white px-0 mb-0">
+                            {{ cat.name }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Submit button -->
+<div id="categories-submit" class="container">
+    <div class="row">
+        <div class="col-4 m-2 p-2 mx-auto">
+            <a role="button" href="#!/eventcategories/view"
+               class="btn btn-lg btn-block text-uppercase font-italic text-white font-weight-bold" ng-click="submit()"
+               ng-class="submitBtnClass">Submit</a>
+        </div>
+    </div>
+</div>
